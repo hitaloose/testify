@@ -8,8 +8,6 @@
 
 O testify gerencia seus telefone designados e salva números para próxima ligação.
 
-![](../header.png)
-
 ## Instalação
 
 OS X & Linux:

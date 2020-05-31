@@ -36,7 +36,7 @@ export const ListSalvaProvider: React.FC = ({ children }) => {
       const findItem = itens.find(i => i.numero === item.numero);
 
       if (!findItem) {
-        setItens([...itens, item]);
+        setItens([item, ...itens]);
       }
     },
     [itens],
@@ -108,6 +108,15 @@ export const ListSalvaProvider: React.FC = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('listSalva', JSON.stringify(itens));
   }, [itens]);
+
+  useEffect(() => {
+    setItens(prev =>
+      prev.sort((a, b) => {
+        if (!a.proximaLigacao || !b.proximaLigacao) return -1;
+        return +new Date(a.proximaLigacao) - +new Date(b.proximaLigacao);
+      }),
+    );
+  }, []);
 
   /**
    * Returns

@@ -1,9 +1,10 @@
 {
-  "name": "Testify",
+  "name": "testify",
   "short_name": "testify",
   "theme_color": "#660066",
-  "background_color": "#f0f2f5",
+  "background_color": "#dddddd",
   "display": "standalone",
+  "orientation": "portrait",
   "Scope": "/",
   "start_url": "/",
   "icons": [
