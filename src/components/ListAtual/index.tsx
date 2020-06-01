@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import produce from 'immer';
 
+import MaskedInput from 'react-text-mask';
 import { MdSave } from 'react-icons/md';
 import { Checkbox } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -36,7 +37,7 @@ const ListAtual: React.FC = () => {
       e.preventDefault();
 
       const quantidadeNumber = Number(quantidade);
-      const numeroNumber = Number(numero);
+      const numeroNumber = Number(numero.replace(/[()-\s]/gi, ''));
       const novosItens: ListAtualItem[] = [];
 
       for (let index = 0; index < quantidadeNumber; index += 1) {
@@ -105,9 +106,26 @@ const ListAtual: React.FC = () => {
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
-        <input
+        <MaskedInput
           type="tel"
           placeholder="Telefone"
+          mask={[
+            '(',
+            /[0-9]/,
+            /[0-9]/,
+            ')',
+            ' ',
+            /[0-9]/,
+            /[0-9]/,
+            /[0-9]/,
+            /[0-9]/,
+            /[0-9]/,
+            '-',
+            /[0-9]/,
+            /[0-9]/,
+            /[0-9]/,
+            /[0-9]/,
+          ]}
           required
           value={numero}
           onChange={e => setNumero(e.target.value)}
